@@ -1,0 +1,107 @@
+:ClrHome
+:Menu("OPTIONS","PLAY!",AA,"VIEW STATS",BB,"LEAVE",CC
+:Lbl BB
+:Output(1,1,"PLAYER 1:
+:Output(2,1,LPONG(1)
+:Output(2,5,"WINS
+:Output(4,1,"PLAYER 2:
+:Output(5,1,LPONG(2)
+:Output(5,5,"WINS
+:Output(7,1,"HIGH SCORE:
+:Output(7,13,LPONG(3)
+:Lbl CC
+:Stop
+:Lbl AA
+:Menu("-----CHOOSE-----","1 PLAYER",BC,"2 PLAYER",BD
+:Lbl BC
+:0→E
+:Goto F
+:Lbl BD
+:1→E
+:Lbl F 
+:prgmGRAPH       //all this does is clear graph and take out X&Y axis
+:0→Xmin
+:-62→Ymin
+:1→ΔX
+:1→ΔY
+:-23→A
+:-23→B
+:47→C
+:-30→D
+:-2→M
+:0→N
+:Line(91,B,91,B+9
+:Lbl A
+:While M=-2
+:Pt-On(C,D,2
+:Line(3,A,3,A+9
+:getKey→K
+:A+4(K=72)-4(K=92→A
+:For(X,A-4,A-1
+:Pt-Off(3,X
+:End
+:For(X,A+9,A+13
+:Pt-Off(3,X
+:End
+:Pt-Off(C,D,2
+:C+M→C
+:D+N→D
+:If D≥-2 or D≤-60
+:-N→N
+:If C<2
+:Goto P2
+:If pxl-Test(-D,C-2
+:2→M
+:End
+:T+1→T
+:randInt(-3,3→N
+:While M=2
+:Pt-On(C,D,2
+:Line(91,B,91,B+9
+:getKey→K
+:B+4(K=74)-4(K=94→B
+:For(X,B-4,B-1
+:Pt-Off(91,X
+:End
+:For(X,B+10,B+13
+:Pt-Off(91,X
+:End
+:Pt-Off(C,D,2
+:C+M→C
+:D+N→D
+:If D≥-2 or D≤-60
+:-N→N
+:If C>92
+:Goto P1
+:If pxl-Test(-D,C+2)
+:-2→M
+:End
+:randInt(-3,3→N
+:T+.01→T
+:Goto A
+:Lbl P1
+:If E=1
+:Then
+:Disp "PLAYER 1 WINS!
+:LPONG(1)+1→LPONG(1)
+:End
+:If E=0
+:Then
+:Disp iPart(T)+100fPart(T)
+:If iPart(T)+100fPart(T)>LPONG(3)
+:iPart(T)+100fPart(T)→LPONG(3)
+:End
+:Stop
+:Lbl P2
+:If E=1
+:Then
+:Disp "PLAYER 2 WINS!
+:LPONG(2)+1→LPONG(2)
+:End
+:If E=0
+:Then
+:iPart(T)+100fPart(T)→H
+:Disp H
+:If H>LPONG(3)
+:H→LPONG(3)
+:End

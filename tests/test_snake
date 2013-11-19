@@ -1,0 +1,41 @@
+:ClrHome
+:Func
+:FnOff 0,1,2,3,4,5,6,7,8,9
+:PlotsOff 1,2,3
+:ClrDraw
+:CoordOff
+:GridOff
+:AxesOff
+:LabelOff
+:ExprOff
+:0→Xmin
+:-62→Ymin
+:1→ΔX
+:1→ΔY
+:36.64→A
+:0→θ
+:25→Z
+:0→X
+:While fPart(A)>.03 and θ=0
+:X+1→X
+:getKey→θ
+:A+3((Z=26)-(Z=24))-.02(Z=25)→A
+:Pt-On(iPart(A),-100fPart(A),2)
+:If X=5
+:26→Z
+:If X=11
+:25→Z
+:If X=17
+:24→Z
+:If  X=23
+:25→Z
+:If X=29
+:26→Z
+:If X=35
+:25→Z
+:End
+:For(X,0,50)
+:If θ
+:50→X
+:getKey→θ
+:End
